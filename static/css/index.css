@@ -1,0 +1,43 @@
+        body {
+          background-color: #f8f9fa;
+        }
+
+        .truncated-text {
+          display: -webkit-box;
+          -webkit-line-clamp: 3;
+          -webkit-box-orient: vertical;
+          overflow: hidden;
+        }
+
+        .note-card {
+          font-size: 14px;
+        }
+
+        .offcanvas {
+          border-radius: 12px 12px 0 0;
+        }
+
+        .btn-icon {
+          border: none;
+          background: none;
+          font-size: 1.3rem;
+        }
+
+        .navbar-brand {
+          font-weight: 600;
+          font-size: 1.2rem;
+        }
+
+        .card-body small {
+          font-size: 12px;
+        }
+
+        textarea.form-control {
+          font-size: 14px;
+          resize: none;
+        }
+
+        .emoji-btn label {
+          font-size: 1.2rem;
+          padding: 3px 6px;
+        }
