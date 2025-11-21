@@ -9,242 +9,225 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
     <link rel="stylesheet" href="../static/css/index.css">
-    <style>
-        body {
-            background: linear-gradient(to bottom right, #fffde7, #c8e6c9);
-        }
+    <link rel="stylesheet" href="../static/css/theme.css">
+    <link rel="stylesheet" href="../static/css/calmZone.css">
 
-        /* Floating emojis */
-        .float-emoji {
-            position: absolute;
-            opacity: 0.85;
-            animation: floatUp linear infinite;
-        }
-
-        @keyframes floatUp {
-            0% {
-                transform: translateY(0) scale(1);
-                opacity: 1;
-            }
-
-            100% {
-                transform: translateY(-120vh) scale(1.3);
-                opacity: 0;
-            }
-        }
-
-        /* Fade away effect for released thought */
-        .fade-away {
-            animation: fadeSmoke 2s ease-out forwards;
-        }
-
-        @keyframes fadeSmoke {
-            0% {
-                opacity: 1;
-                transform: translateY(0);
-            }
-
-            100% {
-                opacity: 0;
-                transform: translateY(-40px) scale(1.2);
-            }
-        }
-    </style>
 </head>
 
 <body>
     <!-- NAVBAR -->
-    <nav class="navbar navbar-light bg-body-tertiary border-bottom shadow-sm">
+    <nav class="navbar navbar-light py-0 border-bottom shadow-sm sticky-top">
         <div class="container-fluid d-flex justify-content-between align-items-center">
-            <a class="navbar-brand" href="index.html">✨ Feel Notes</a>
 
-            <!-- Center Create Button -->
-            <button class="btn btn-outline-primary btn-sm rounded-pill" type="button" data-bs-toggle="offcanvas"
-                data-bs-target="#offcanvasCreate" aria-controls="offcanvasCreate" style="font-size: 10px;">
+            <!-- Brand -->
+            <a class="navbar-brand d-flex align-items-center" href="/index">
+                <img src="../static/img/invertLogo.png" alt="logo" class="img-fluid" style="height:60px;">
+                <span class="ms-2">Feel Notes</span>
+            </a>
+
+            <!-- Offcanvas Toggler (only on small screens) -->
+            <button class="btn border-0 d-md-none" type="button" data-bs-toggle="offcanvas"
+                data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar">
+                <i class="bi bi-list fs-3 text-white"></i>
+            </button>
+
+            <!-- Create Button (visible on md and up) -->
+            <button class="btn btn-outline-primary btn-sm rounded-pill d-none d-md-block" type="button"
+                data-bs-toggle="offcanvas" data-bs-target="#offcanvasCreate" aria-controls="offcanvasCreate"
+                style="font-size: 16px;">
                 <i class="bi bi-plus-lg me-1"></i> Create Note
             </button>
 
-            <ul class="nav" style="font-size: 13px;">
-                <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
-                <li class="nav-item"><a class="nav-link" href="topThoughts.html">Top Thoughts</a></li>
-                <li class="nav-item"><a class="nav-link" href="calmZone.html">Calm Zone</a></li>
-            </ul>
+            <!-- Desktop Nav + Icons -->
+            <div class="d-none d-md-flex align-items-center column-gap-3">
+                <ul class="nav" style="font-size: 19px;">
+                    <li class="nav-item"><a class="nav-link " href="/index">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/topThoughts">Top Thoughts</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="/calmZone">Calm Zone</a></li>
+                </ul>
 
-            <div class="d-flex column-gap-2 align-items-center">
-                <a class="nav-link" style="font-size: 1.3rem;" href="save.html"><i class="bi bi-bookmark"></i></i></a>
+                <a class="nav-link" href="/save"><i class="bi bi-bookmark fs-3"></i></a>
 
                 <button class="btn-icon" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasMood"
                     aria-controls="offcanvasMood">
-                    <i class="bi bi-emoji-sunglasses"></i>
+                    <i class="bi bi-emoji-sunglasses fs-3"></i>
                 </button>
+
+                <div class="dropdown">
+                    <a href="#" class="d-flex align-items-center text-decoration-none" data-bs-toggle="dropdown"
+                        aria-expanded="false">
+                        <i class="bi bi-person-circle fs-3"></i>
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-end text-center">
+                        <li>
+                            <h6 class="dropdown-header mb-0">name</h6>
+                        </li>
+                        <li><small class="text-muted">email</small></li>
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+                        <li><a class="dropdown-item text-danger" href="#">Logout</a></li>
+                    </ul>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Offcanvas for Mobile -->
+        <div class="offcanvas offcanvas-end" style="background-color: var(--primary) !important;" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
+            <div class="offcanvas-header d-flex justify-content-between align-items-center">
+                <h5 class="offcanvas-title text-white" id="offcanvasNavbarLabel">Menu</h5>
+                <i class="bi bi-x-lg text-white" data-bs-dismiss="offcanvas" aria-label="Close"></i>
+            </div>
+            <div class="offcanvas-body d-flex flex-column justify-content-between">
+                <div>
+                    <!-- Create Button inside offcanvas -->
+                    <button class="btn btn-outline-primary btn-sm rounded-pill mb-3 w-100" type="button"
+                        data-bs-toggle="offcanvas" data-bs-target="#offcanvasCreate" aria-controls="offcanvasCreate">
+                        <i class="bi bi-plus-lg me-1"></i> Create Note
+                    </button>
+
+                    <!-- Nav Links -->
+                    <ul class="navbar-nav mb-3">
+                        <li class="nav-item"><a class="nav-link" href="/index">Home</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/topThoughts">Top Thoughts</a></li>
+                        <li class="nav-item"><a class="nav-link active" href="/calmZone">Calm Zone</a></li>
+                    </ul>
+                </div>
+
+                <div class="d-flex justify-content-around align-items-center mt-3 border-top pt-3">
+
+                    <a href="/save" class="nav-link fs-5"><i class="bi bi-bookmark"></i></a>
+
+                    <button class="btn-icon" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasMood"
+                        aria-controls="offcanvasMood">
+                        <i class="bi bi-emoji-sunglasses fs-5"></i>
+                    </button>
+
+                    <div class="dropdown dropup">
+                        <a href="#" class="d-flex align-items-center text-decoration-none" data-bs-toggle="dropdown"
+                            aria-expanded="false">
+                            <i class="bi bi-person-circle fs-4"></i>
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-end text-center">
+                            <li>
+                                <h6 class="dropdown-header mb-0">name</h6>
+                            </li>
+                            <li><small class="text-muted">email</small></li>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+                            <li><a class="dropdown-item text-danger" href="#">Logout</a></li>
+                        </ul>
+                    </div>   
+                </div>
             </div>
         </div>
     </nav>
 
+
+
     <!-- Main container -->
-    <div class="container text-center p-4 rounded-4 shadow-lg bg-white bg-opacity-75 my-3" 
-        style="max-width: 420px; backdrop-filter: blur(10px); z-index: 2;">
-        <h3 class="text-success fw-semibold mb-3">🌞 Calm Zone 🌞</h3>
-        <p id="quote" class="fst-italic text-secondary mb-3">“Peace begins with a smile.”</p>
+    <form id="zoneForm">
+        <div class="container text-center p-4 rounded-4 shadow-lg bg-white bg-opacity-75 my-3"
+            style="max-width: 420px; backdrop-filter: blur(10px); z-index: 2;">
+            <h3 class=" fw-semibold mb-3 " style="color: var(--primary);" >🌞 Calm Zone 🌞</h3>
+            <p id="quote" class="fst-italic text-secondary mb-3">“Peace begins with a smile.”</p>
 
-        <div class="mb-3">
-            <label for="thoughtInput" class="form-label fw-semibold text-muted">Share what's on your mind:</label>
-            <textarea id="thoughtInput" class="form-control bg-light border-0 shadow-sm" rows="3"
-                placeholder="Write and release your thoughts..."></textarea>
+            <div class="mb-3">
+                <label for="thoughtInput" class="form-label fw-semibold text-muted">Share what's on your mind:</label>
+                <textarea id="thoughtInput" class="form-control bg-light border-0 shadow-sm" rows="3"
+                    placeholder="Write and release your thoughts..."></textarea>
+            </div>
+
+            <button id="releaseBtn" type="submit" class="btn  px-4 mb-3 rounded-3" style="background-color: var(--primary); color: white;">Release</button>
+
+            <div id="releaseText" class="fw-semibold text-success mb-2" style="display:none;"></div>
+
+            <p class="small text-muted">Stay bright, stay peaceful 🌻</p>
         </div>
-
-        <button id="releaseBtn" class="btn btn-success px-4 mb-3 rounded-3">Release</button>
-
-        <div id="releaseText" class="fw-semibold text-success mb-2" style="display:none;"></div>
-
-        <p class="small text-muted">Stay bright, stay peaceful 🌻</p>
-    </div>
+    </form>
     <!-- MODAL: Full Note View -->
-        <div class="modal fade" id="noteModal" tabindex="-1" aria-labelledby="noteModalLabel" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-scrollable">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="noteModalLabel">Full Note</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body" id="noteModalBody">
-                        <!-- Content dynamically inserted here -->
-                    </div>
+    <div class="modal fade" id="noteModal" tabindex="-1" aria-labelledby="noteModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-scrollable">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="noteModalLabel">Full Note</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body" id="noteModalBody">
+                    <!-- Content dynamically inserted here -->
                 </div>
             </div>
         </div>
+    </div>
 
-        <!-- OFFCANVAS: Note Creation -->
-        <div class="offcanvas offcanvas-top" tabindex="-1" id="offcanvasCreate" aria-labelledby="offcanvasCreateLabel"
-            style="height: 50vh;">
-            <div class="offcanvas-header pb-0">
-                <h5 id="offcanvasCreateLabel" class="fw-semibold">Create a Note</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-            </div>
-            <div class="offcanvas-body pt-2">
-                <textarea class="form-control mb-3" rows="3" placeholder="What's on your mind?"></textarea>
+    <!-- OFFCANVAS: Note Creation -->
+    <div class="offcanvas offcanvas-top" tabindex="-1" id="offcanvasCreate" aria-labelledby="offcanvasCreateLabel">
+        <div class="offcanvas-header pb-0">
+            <h5 id="offcanvasCreateLabel" class="fw-semibold">Create a Note</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        </div>
+        <div class="offcanvas-body pt-2">
+            <textarea class="form-control mb-3" rows="3" style="height: 140px;" placeholder="What's on your mind?"></textarea>
 
-                <div class="d-flex justify-content-between align-items-center">
-                    <div class="d-flex flex-wrap gap-1 emoji-btn">
-                        <input type="radio" class="btn-check" name="emoji" id="emoji1" autocomplete="off">
-                        <label class="btn btn-outline-primary" for="emoji1">😀</label>
-                        <input type="radio" class="btn-check" name="emoji" id="emoji2" autocomplete="off">
-                        <label class="btn btn-outline-primary" for="emoji2">😍</label>
-                        <input type="radio" class="btn-check" name="emoji" id="emoji3" autocomplete="off">
-                        <label class="btn btn-outline-primary" for="emoji3">😒</label>
-                        <input type="radio" class="btn-check" name="emoji" id="emoji4" autocomplete="off">
-                        <label class="btn btn-outline-primary" for="emoji4">😘</label>
-                        <input type="radio" class="btn-check" name="emoji" id="emoji5" autocomplete="off">
-                        <label class="btn btn-outline-primary" for="emoji5">😂</label>
-                        <input type="radio" class="btn-check" name="emoji" id="emoji6" autocomplete="off">
-                        <label class="btn btn-outline-primary" for="emoji6">😎</label>
-                        <input type="radio" class="btn-check" name="emoji" id="emoji7" autocomplete="off">
-                        <label class="btn btn-outline-primary" for="emoji7">😛</label>
-                        <input type="radio" class="btn-check" name="emoji" id="emoji8" autocomplete="off">
-                        <label class="btn btn-outline-primary" for="emoji8">😭</label>
-                        <input type="radio" class="btn-check" name="emoji" id="emoji9" autocomplete="off">
-                        <label class="btn btn-outline-primary" for="emoji9">😇</label>
-                        <input type="radio" class="btn-check" name="emoji" id="emoji10" autocomplete="off">
-                        <label class="btn btn-outline-primary" for="emoji10">😅</label>
+            <div class="d-flex justify-content-between align-items-center">
+                <div class="d-flex flex-wrap gap-1 emoji-btn">
+                    <input type="radio" class="btn-check" name="emoji" id="emoji1" autocomplete="off">
+                    <label class="btn btn-outline-primary" for="emoji1">😀</label>
+                    <input type="radio" class="btn-check" name="emoji" id="emoji2" autocomplete="off">
+                    <label class="btn btn-outline-primary" for="emoji2">😍</label>
+                    <input type="radio" class="btn-check" name="emoji" id="emoji3" autocomplete="off">
+                    <label class="btn btn-outline-primary" for="emoji3">😒</label>
+                    <input type="radio" class="btn-check" name="emoji" id="emoji4" autocomplete="off">
+                    <label class="btn btn-outline-primary" for="emoji4">😘</label>
+                    <input type="radio" class="btn-check" name="emoji" id="emoji5" autocomplete="off">
+                    <label class="btn btn-outline-primary" for="emoji5">😂</label>
+                    <input type="radio" class="btn-check" name="emoji" id="emoji6" autocomplete="off">
+                    <label class="btn btn-outline-primary" for="emoji6">😎</label>
+                    <input type="radio" class="btn-check" name="emoji" id="emoji7" autocomplete="off">
+                    <label class="btn btn-outline-primary" for="emoji7">😛</label>
+                    <input type="radio" class="btn-check" name="emoji" id="emoji8" autocomplete="off">
+                    <label class="btn btn-outline-primary" for="emoji8">😭</label>
+                    <input type="radio" class="btn-check" name="emoji" id="emoji9" autocomplete="off">
+                    <label class="btn btn-outline-primary" for="emoji9">😇</label>
+                    <input type="radio" class="btn-check" name="emoji" id="emoji10" autocomplete="off">
+                    <label class="btn btn-outline-primary" for="emoji10">😅</label>
 
-                    </div>
-                    <button class="btn btn-primary btn-sm">Whisper it</button>
                 </div>
+                <button class="btn btn-primary btn-sm" style="background-color: var(--primary); color: white;">Whisper it</button>
             </div>
         </div>
+    </div>
 
-        <!-- OFFCANVAS: Mood of the Day -->
-        <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasMood" aria-labelledby="offcanvasMoodLabel">
-            <div class="offcanvas-header">
-                <h5 id="offcanvasMoodLabel" class="fw-semibold">Mood of the Day</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-            </div>
-            <div class="offcanvas-body text-center">
-                <h6>Today’s Mood Chart</h6>
-                <div class="d-flex justify-content-center mb-3">
-                    <canvas id="moodChart" width="200" height="200"></canvas>
-                </div>
-                <hr>
-                <h6>Quote of the Day</h6>
-                <p>"Keep calm and feel your emotions."</p>
-                <button class="btn btn-outline-primary btn-sm mt-3">Inspire Me</button>
-            </div>
+    <!-- OFFCANVAS: Mood of the Day -->
+    <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasMood" aria-labelledby="offcanvasMoodLabel">
+        <div class="offcanvas-header">
+            <h5 id="offcanvasMoodLabel" class="fw-semibold">Mood of the Day</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
         </div>
+        <div class="offcanvas-body text-center">
+            <h6>Today’s Mood Chart</h6>
+            <div class="d-flex justify-content-center mb-3">
+                <canvas id="moodChart" width="200" height="200"></canvas>
+            </div>
+            <hr>
+            <h6>Quote of the Day</h6>
+            <p>"Keep calm and feel your emotions."</p>
+            <button class="btn btn-outline-primary btn-sm mt-3">Inspire Me</button>
+        </div>
+    </div>
     </div>
 
 
 
 
     <!-- Bootstrap JS -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-
-    <!-- Custom JS -->
-    <script>
-        const emojis = ["🌸", "🌿", "☀️", "🌼", "🕊️", "💖", "🌈", "✨", "💫", "🌻", "💛"];
-        const quotes = [
-            "“Peace begins with a smile.”",
-            "“Let your worries drift away.”",
-            "“You are light and calm.”",
-            "“Happiness grows where peace lives.”",
-            "“Breathe in sunshine, exhale stress.”",
-            "“Choose calm, choose joy.”",
-            "“You deserve peace and happiness.”"
-        ];
-
-        const quoteEl = document.getElementById('quote');
-        const releaseBtn = document.getElementById('releaseBtn');
-        const thoughtInput = document.getElementById('thoughtInput');
-        const releaseText = document.getElementById('releaseText');
-
-        // 🌿 Change quote every few seconds
-        setInterval(() => {
-            quoteEl.style.opacity = 0;
-            setTimeout(() => {
-                quoteEl.textContent = quotes[Math.floor(Math.random() * quotes.length)];
-                quoteEl.style.opacity = 1;
-            }, 1000);
-        }, 6000);
-
-        // 🕊️ Handle Release button click
-        releaseBtn.addEventListener('click', () => {
-            const text = thoughtInput.value.trim();
-            if (text) {
-                releaseText.textContent = "💭 " + text + " 💭";
-                releaseText.style.display = "block";
-                releaseText.classList.add("fade-away");
-
-                for (let i = 0; i < 5; i++) createFloatingEmoji();
-
-                setTimeout(() => {
-                    releaseText.style.display = "none";
-                    releaseText.classList.remove("fade-away");
-                    thoughtInput.value = "";
-                }, 2000);
-            } else {
-                releaseText.textContent = "💛 Write something to release...";
-                releaseText.style.display = "block";
-                setTimeout(() => releaseText.style.display = "none", 1500);
-            }
-        });
-
-        // 🌼 Floating emoji creation
-        function createFloatingEmoji() {
-            const emoji = document.createElement("div");
-            emoji.classList.add("float-emoji");
-            emoji.textContent = emojis[Math.floor(Math.random() * emojis.length)];
-            emoji.style.left = Math.random() * 100 + "%";
-            emoji.style.animationDuration = (Math.random() * 6 + 8) + "s";
-            emoji.style.fontSize = Math.random() * 12 + 20 + "px";
-            document.body.appendChild(emoji);
-            setTimeout(() => emoji.remove(), 13000);
-        }
-
-        // 🌈 Background emoji floating slowly
-        setInterval(createFloatingEmoji, 1800);
-    </script>
+    
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <script src="../static/js/index.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>s
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="../static/js/calmZone.js"></script>
 </body>
 
 </html>

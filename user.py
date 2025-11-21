@@ -1,8 +1,9 @@
-from flask import Flask, request, jsonify ,render_template
+from flask import request, jsonify, Blueprint
 from models import User
-app = Flask(__name__)
 
-@app.post('/new')
+userBp = Blueprint('userBp', __name__)
+
+@userBp.post('/new')
 def newUser():
     try:
         data = request.get_json()
@@ -10,7 +11,7 @@ def newUser():
         name = data.get('name')
         email = data.get('email')
         password = data('password')
-        phoneNumber = data('phoneNumber')
+        phoneNumber = data('phoneNumber')   
 
         if not name or not email or not password:
             return jsonify({"status": "error", "message": "All fields are required."})
@@ -27,8 +28,8 @@ def newUser():
         return jsonify({"status": "error", "message": f"Error: {str(e)}"})
 
 
-@app.put("/update")
-def updateStudent():
+@userBp.put("/update")
+def updateUser():
     try:
         id = request.args.get("id")
         data = request.get_json()
@@ -55,8 +56,8 @@ def updateStudent():
         return jsonify({"status": "error", "message": f"Error: {str(e)}"})
     
     
-@app.get('/get')
-def main():
+@userBp.get('/getAll')
+def getAllUser():
     try:
         users = User.objects()
 
@@ -75,8 +76,48 @@ def main():
 
             userList.append(data)
 
-        return jsonify({"status": "success", "message": "User retrived","data":userList} )
+        return jsonify({"status": "success", "message": "Users retrived succeessfully","data":userList} )
     
     except Exception as e:
         return jsonify({"status": "error", "message": f"Error: {str(e)}"})
-    
+        
+@userBp.get("/getSingle")
+def getSingleUser():
+    try:
+
+        id = request.args.get("id")
+
+        user = User.objects(id = id).first()
+
+        if not user:
+            return jsonify({"status": "error", "message": "User not found"})
+        
+        userData = {
+            "id":user.id,
+            "name": user.name, 
+            "email": user.email, 
+            "password": user.password,
+            "phoneNumber":user.phoneNumber
+        }
+
+        return jsonify({"status": "success", "message": "User retrived succeessfully", "data": userData}) 
+
+    except Exception as e: 
+        return jsonify({"status": "error", "message": f"Error: {str(e)}"})
+
+
+@userBp.delete("/delete")
+def deleteUser():
+    try:
+        id = request.args.get("id")
+
+        user = User.objects(id = id).first()
+
+        if not user:
+            return jsonify({"status": "error", "message": "User not found"})
+        
+        user.delete()
+
+        return jsonify({"status": "success", "message": "User found and removed from users list."}) 
+    except Exception as e: 
+        return jsonify({"status": "error", "message": f"Error: {str(e)}"})

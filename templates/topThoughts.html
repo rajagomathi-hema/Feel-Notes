@@ -9,44 +9,125 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
     <link rel="stylesheet" href="../static/css/index.css">
+    <link rel="stylesheet" href="../static/css/theme.css">
 </head>
 
 <body class="bg-light">
 
     <!-- NAVBAR -->
-    <nav class="navbar navbar-light bg-body-tertiary border-bottom shadow-sm">
+    <nav class="navbar navbar-light py-0 border-bottom shadow-sm sticky-top">
         <div class="container-fluid d-flex justify-content-between align-items-center">
-            <a class="navbar-brand" href="index.html">✨ Feel Notes</a>
 
-            <!-- Center Create Button -->
-            <button class="btn btn-outline-primary btn-sm rounded-pill" type="button" data-bs-toggle="offcanvas"
-                data-bs-target="#offcanvasCreate" aria-controls="offcanvasCreate"  style="font-size: 10px;">
+            <!-- Brand -->
+            <a class="navbar-brand d-flex align-items-center" href="/index">
+                <img src="../static/img/invertLogo.png" alt="logo" class="img-fluid" style="height:60px;">
+                <span class="ms-2">Feel Notes</span>
+            </a>
+
+            <!-- Offcanvas Toggler (only on small screens) -->
+            <button class="btn border-0 d-md-none" type="button" data-bs-toggle="offcanvas"
+                data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar">
+                <i class="bi bi-list fs-3 text-white"></i>
+            </button>
+
+            <!-- Create Button (visible on md and up) -->
+            <button class="btn btn-outline-primary btn-sm rounded-pill d-none d-md-block" type="button"
+                data-bs-toggle="offcanvas" data-bs-target="#offcanvasCreate" aria-controls="offcanvasCreate"
+                style="font-size: 16px;">
                 <i class="bi bi-plus-lg me-1"></i> Create Note
             </button>
 
-            <ul class="nav" style="font-size: 13px;">
-                <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
-                <li class="nav-item"><a class="nav-link" href="topThoughts.html">Top Thoughts</a></li>
-                <li class="nav-item"><a class="nav-link" href="calmZone.html">Calm Zone</a></li>
-            </ul>
+            <!-- Desktop Nav + Icons -->
+            <div class="d-none d-md-flex align-items-center column-gap-3">
+                <ul class="nav" style="font-size: 19px;">
+                    <li class="nav-item"><a class="nav-link " href="/index">Home</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="/topThoughts">Top Thoughts</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/calmZone">Calm Zone</a></li>
+                </ul>
 
-            <div class="d-flex column-gap-2 align-items-center">
-                <a class="nav-link" style="font-size: 1.3rem;" href="save.html"><i class="bi bi-bookmark"></i></i></a>
+                <a class="nav-link" href="/save"><i class="bi bi-bookmark fs-3"></i></a>
 
                 <button class="btn-icon" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasMood"
                     aria-controls="offcanvasMood">
-                    <i class="bi bi-emoji-sunglasses"></i>
+                    <i class="bi bi-emoji-sunglasses fs-3"></i>
                 </button>
+
+                <div class="dropdown">
+                    <a href="#" class="d-flex align-items-center text-decoration-none" data-bs-toggle="dropdown"
+                        aria-expanded="false">
+                        <i class="bi bi-person-circle fs-3"></i>
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-end text-center">
+                        <li>
+                            <h6 class="dropdown-header mb-0">name</h6>
+                        </li>
+                        <li><small class="text-muted">email</small></li>
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+                        <li><a class="dropdown-item text-danger" href="#">Logout</a></li>
+                    </ul>
+                </div>
             </div>
-            
+
+        </div>
+
+        <!-- Offcanvas for Mobile -->
+        <div class="offcanvas offcanvas-end" style="background-color: var(--primary) !important;" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
+            <div class="offcanvas-header d-flex justify-content-between align-items-center">
+                <h5 class="offcanvas-title text-white" id="offcanvasNavbarLabel">Menu</h5>
+                <i class="bi bi-x-lg text-white" data-bs-dismiss="offcanvas" aria-label="Close"></i>
+            </div>
+            <div class="offcanvas-body d-flex flex-column justify-content-between">
+                <div>
+                    <!-- Create Button inside offcanvas -->
+                    <button class="btn btn-outline-primary btn-sm rounded-pill mb-3 w-100" type="button"
+                        data-bs-toggle="offcanvas" data-bs-target="#offcanvasCreate" aria-controls="offcanvasCreate">
+                        <i class="bi bi-plus-lg me-1"></i> Create Note
+                    </button>
+
+                    <!-- Nav Links -->
+                    <ul class="navbar-nav mb-3">
+                        <li class="nav-item"><a class="nav-link " href="/index">Home</a></li>
+                        <li class="nav-item"><a class="nav-link active" href="/topThoughts">Top Thoughts</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/calmZone">Calm Zone</a></li>
+                    </ul>
+                </div>
+
+                <div class="d-flex justify-content-around align-items-center mt-3 border-top pt-3">
+                    <a href="/save" class="nav-link fs-5"><i class="bi bi-bookmark"></i></a>
+
+                    <button class="btn-icon" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasMood"
+                        aria-controls="offcanvasMood">
+                        <i class="bi bi-emoji-sunglasses fs-5"></i>
+                    </button>
+
+                    <div class="dropdown dropup">
+                        <a href="#" class="d-flex align-items-center text-decoration-none" data-bs-toggle="dropdown"
+                            aria-expanded="false">
+                            <i class="bi bi-person-circle fs-4"></i>
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-end text-center">
+                            <li>
+                                <h6 class="dropdown-header mb-0">name</h6>
+                            </li>
+                            <li><small class="text-muted">email</small></li>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+                            <li><a class="dropdown-item text-danger" href="#">Logout</a></li>
+                        </ul>
+                    </div>   
+                </div>
+            </div>
         </div>
     </nav>
 
-    <div class="mx-2">
+    <div class="mx-5">
         <!-- Today's Energy Section -->
-        <div class="text-center mb-4">
-            <h5 class="fw-semibold">Today's Energy: <span class="text-success">Hopeful & Kind</span></h5>
-            <div class="d-flex justify-content-center gap-3 mt-3 flex-wrap">
+        <div class="text-center my-3">
+            <h5 class="fw-semibold mt-4">Today's Energy : <span style="color: var(--primary);">Hopeful & Kind</span></h5>
+            <div class="d-flex justify-content-center gap-3 mt-4 flex-wrap ">
                 <button class="btn btn-outline-primary">😊 Happy</button>
                 <button class="btn btn-outline-danger">❤️ Love</button>
                 <button class="btn btn-outline-secondary">😢 Sad</button>
@@ -57,10 +138,10 @@
         </div>
 
         <!-- Top Thoughts Cards -->
-        <h5 class="mb-3 text-primary">Most Loved Thoughts 💭</h5>
+        <h5 class="mb-3 mt-4" style="color: var(--primary);">Most Loved Thoughts 💭</h5>
         <!-- MAIN BODY -->
-        <div class="container-fluid mt-3">
-            <div class="row g-3">
+        <div class="container mt-4 ">
+            <div class="row g-4">
                 <!-- Cards Section -->
                 <div class="col-md-12">
                     <div class="row g-3">
@@ -74,7 +155,7 @@
                                             <span class="fs-4">🙄</span>
                                         </div>
                                         <div class="col-10">
-                                            <p class="text-muted truncated-text mb-1" style="font-size: 13px;">
+                                            <p class="text-muted truncated-text mb-1" style="font-size: inherit;">
                                                 Will disappear in 8h Will disappear in 8h Will disappear in 8h Will
                                                 disappear in 8h
                                                 Will disappear in 8h Will disappear in 8h Will disappear in 8h Will
@@ -157,31 +238,29 @@
 
                                     <div class="d-flex justify-content-between mt-3 pt-2 border-top">
                                         <div class="d-flex align-items-center">
-                                            <button class="btn border-0 p-0">😀</button>
+                                            <button class="btn border-0 p-0 fs-4">😀</button>
                                             <span class="count"></span>
                                         </div>
                                         <div class="d-flex align-items-center">
-                                            <button class="btn border-0 p-0">😍</button>
+                                            <button class="btn border-0 p-0 fs-4">😍</button>
                                             <span class="count"></span>
                                         </div>
                                         <div class="d-flex align-items-center">
-                                            <button class="btn border-0 p-0">😒</button>
+                                            <button class="btn border-0 p-0 fs-4">😒</button>
                                             <span class="count"></span>
                                         </div>
                                         <div class="d-flex align-items-center">
-                                            <button class="btn border-0 p-0">😘</button>
+                                            <button class="btn border-0 p-0 fs-4">😘</button>
                                             <span class="count"></span>
                                         </div>
                                         <div class="d-flex align-items-center">
-                                            <button class="btn border-0 p-0">😂</button>
+                                            <button class="btn border-0 p-0 fs-4">😂</button>
                                             <span class="count"></span>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-
-
                         <div class="col-md-6">
                             <div class="card note-card shadow-sm">
                                 <div class="card-body">
@@ -190,7 +269,7 @@
                                             <span class="fs-4">🙄</span>
                                         </div>
                                         <div class="col-10">
-                                            <p class="text-muted truncated-text mb-1" style="font-size: 13px;">
+                                            <p class="text-muted truncated-text mb-1" style="font-size: inherit;">
                                                 Will disappear in 8h Will disappear in 8h Will disappear in 8h Will
                                                 disappear in 8h
                                                 Will disappear in 8h Will disappear in 8h Will disappear in 8h Will
@@ -254,7 +333,15 @@
                                                 be
                                                 used to
                                                 express surprise or question comprehension.
-
+                                                Will disappear in 8h Will disappear in 8h Will disappear in 8h Will
+                                                disappear in 8h
+                                                Will disappear in 8h Will disappear in 8h Will disappear in 8h Will
+                                                "Hello" is a common greeting used when meeting someone, answering the
+                                                telephone,
+                                                or to get someone's attention. The word is an interjection that can also
+                                                be
+                                                used to
+                                                express surprise or question comprehension.
                                             </p>
                                             <button type="button"
                                                 class="btn btn-link p-0 text-decoration-none text-primary read-more-btn">
@@ -265,29 +352,33 @@
 
                                     <div class="d-flex justify-content-between mt-3 pt-2 border-top">
                                         <div class="d-flex align-items-center">
-                                            <button class="btn border-0 p-0">😀</button>
+                                            <button class="btn border-0 p-0 fs-4">😀</button>
                                             <span class="count"></span>
                                         </div>
                                         <div class="d-flex align-items-center">
-                                            <button class="btn border-0 p-0">😍</button>
+                                            <button class="btn border-0 p-0 fs-4">😍</button>
                                             <span class="count"></span>
                                         </div>
                                         <div class="d-flex align-items-center">
-                                            <button class="btn border-0 p-0">😒</button>
+                                            <button class="btn border-0 p-0 fs-4">😒</button>
                                             <span class="count"></span>
                                         </div>
                                         <div class="d-flex align-items-center">
-                                            <button class="btn border-0 p-0">😘</button>
+                                            <button class="btn border-0 p-0 fs-4">😘</button>
                                             <span class="count"></span>
                                         </div>
                                         <div class="d-flex align-items-center">
-                                            <button class="btn border-0 p-0">😂</button>
+                                            <button class="btn border-0 p-0 fs-4">😂</button>
                                             <span class="count"></span>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
+
+
+
+                        
 
                         <!-- Duplicate note cards as needed -->
 
@@ -298,12 +389,12 @@
 
         <!-- Tree of Thoughts Section -->
         <div class="mt-5 text-center">
-            <h5 class="text-success mb-3">🌳 Tree of Thoughts</h5>
+            <h5 class=" mb-3" style="color: var(--primary);">🌳 Tree of Thoughts</h5>
             <p>Each leaf grows from emotions shared today.</p>
             <div class="border rounded-3 bg-white p-4 shadow-sm">
                 <p class="text-muted">[Tree illustration can be added here later 🌿]</p>
             </div>
-            <button class="btn btn-primary mt-3">🌱 Grow a New Leaf</button>
+            <button class="btn  mt-3 mb-3" style="background-color: var(--primary); color: white;">🌱 Grow a New Leaf</button>
         </div>
 
 
@@ -323,14 +414,13 @@
         </div>
 
         <!-- OFFCANVAS: Note Creation -->
-        <div class="offcanvas offcanvas-top" tabindex="-1" id="offcanvasCreate" aria-labelledby="offcanvasCreateLabel"
-            style="height: 50vh;">
+        <div class="offcanvas offcanvas-top" tabindex="-1" id="offcanvasCreate" aria-labelledby="offcanvasCreateLabel">
             <div class="offcanvas-header pb-0">
                 <h5 id="offcanvasCreateLabel" class="fw-semibold">Create a Note</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
             </div>
             <div class="offcanvas-body pt-2">
-                <textarea class="form-control mb-3" rows="3" placeholder="What's on your mind?"></textarea>
+                <textarea class="form-control mb-3" rows="3" style="height: 140px;" placeholder="What's on your mind?"></textarea>
 
                 <div class="d-flex justify-content-between align-items-center">
                     <div class="d-flex flex-wrap gap-1 emoji-btn">
@@ -356,7 +446,7 @@
                         <label class="btn btn-outline-primary" for="emoji10">😅</label>
 
                     </div>
-                    <button class="btn btn-primary btn-sm">Whisper it</button>
+                    <button class="btn btn-primary btn-sm" style="background-color: var(--primary); color: white;">Whisper it</button>
                 </div>
             </div>
         </div>

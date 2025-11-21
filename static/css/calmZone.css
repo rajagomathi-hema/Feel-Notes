@@ -1,0 +1,44 @@
+        /* Floating emojis */
+        .float-emoji {
+            position: absolute;
+            opacity: 0.85;
+            animation: floatUp linear infinite;
+        }
+
+        @keyframes floatUp {
+            0% {
+                transform: translateY(0) scale(1);
+                opacity: 1;
+            }
+
+            100% {
+                transform: translateY(-100vh) scale(1.3);
+                opacity: 0;
+            }
+        }
+
+        /* Fade away effect for released thought */
+        .fade-away {
+            animation: fadeSmoke 2s ease-out forwards;
+        }
+
+        @keyframes fadeSmoke {
+            0% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+
+            100% {
+                opacity: 0;
+                transform: translateY(-40px) scale(1.2);
+            }
+        }
+    
+#zoneForm{
+    margin-top: 100px;
+    scale: 1.3;
+}
+
+html{
+    scrollbar-width: none;
+}

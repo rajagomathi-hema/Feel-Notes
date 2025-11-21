@@ -1,0 +1,61 @@
+:root {
+  --primary: #05485a;       
+  --accent1: #3CB9BD;       
+  --accent2: #F5C96A;       
+  --bg-light: #F9FAF9;      
+  --text-dark: #2C2C2C;     
+  --muted-teal: #B8E0DF;
+  --note-bg: #F4EEFF;      /* soft lavender */
+  
+}
+
+.active{
+  color: var(--accent2) !important;
+}
+
+.navbar {
+  background-color: var(--primary);  
+  color: white;                      
+}
+
+.navbar a {
+  color: white;
+  text-decoration: none;
+  
+}
+
+.navbar a:hover {
+  color: var(--accent2); 
+}
+
+.navbar .bi-emoji-sunglasses {
+  color: white;
+  text-decoration: none;
+  
+}
+
+.navbar .bi-emoji-sunglasses:hover {
+  color: var(--accent2); 
+}
+
+body {
+  background-color: var(--bg-light);
+  color: var(--text-dark);
+  
+}
+
+.btn-outline-primary{
+  border-color: var(--accent2) !important;
+  color: var(--accent2) !important;
+}
+
+.btn-outline-primary:hover{
+  background-color: var(--accent2) !important;
+  color: #000 !important;
+}
+
+.card {
+  background-color: var(--note-bg);
+  border-left: 6px solid var(--primary);
+}
+

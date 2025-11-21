@@ -1,24 +1,4 @@
 document.addEventListener("DOMContentLoaded", function () {
-    // Handle "Read more" logic
-    document.querySelectorAll('.truncated-text').forEach(textEl => {
-        const readMoreBtn = textEl.parentElement.querySelector('.read-more-btn');
-        if (readMoreBtn && textEl.scrollHeight <= textEl.clientHeight + 2) {
-            readMoreBtn.style.display = 'none';
-        }
-    });
-
-    // Show modal dynamically
-    const noteModal = new bootstrap.Modal(document.getElementById('noteModal'));
-    const modalBody = document.getElementById('noteModalBody');
-
-    document.querySelectorAll('.read-more-btn').forEach(btn => {
-        btn.addEventListener('click', function () {
-            const fullText = this.parentElement.querySelector('.truncated-text').textContent.trim();
-            modalBody.textContent = fullText;
-            noteModal.show();
-        });
-    });
-
     // === Mood Pie Chart ===
     const data = {
         labels: ["Happy 😀", "Loved 😍", "Sad 😢", "Angry 😡", "Excited 🤩"],

@@ -1,43 +1,60 @@
-        body {
-          background-color: #f8f9fa;
-        }
 
-        .truncated-text {
-          display: -webkit-box;
-          -webkit-line-clamp: 3;
-          -webkit-box-orient: vertical;
-          overflow: hidden;
-        }
 
-        .note-card {
-          font-size: 14px;
-        }
+.truncated-text {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
 
-        .offcanvas {
-          border-radius: 12px 12px 0 0;
-        }
+.note-card {
+  font-size: 18px;
+}
 
-        .btn-icon {
-          border: none;
-          background: none;
-          font-size: 1.3rem;
-        }
+.offcanvas {
+  border-radius: 12px 12px 0 0;
+}
 
-        .navbar-brand {
-          font-weight: 600;
-          font-size: 1.2rem;
-        }
+#offcanvasCreate.offcanvas-top {
+  height: fit-content;      
+  max-width: 800px !important;  
+  margin: 0 auto;               
+  left: 0;
+  right: 0;
+  border-radius: 10px;
+}
 
-        .card-body small {
-          font-size: 12px;
-        }
 
-        textarea.form-control {
-          font-size: 14px;
-          resize: none;
-        }
+.btn-icon {
+  border: none;
+  background: none;
+  font-size: 1.3rem;
+}
 
-        .emoji-btn label {
-          font-size: 1.2rem;
-          padding: 3px 6px;
-        }
+.navbar-brand {
+  font-weight: 600;
+  font-size: 1.6rem;
+}
+
+.card-body small {
+  font-size: 12px;
+}
+
+textarea.form-control {
+  font-size: 14px;
+  resize: none;
+}
+
+.emoji-btn label {
+  font-size: 1.2rem;
+  padding: 3px 6px;
+}
+
+@font-face {
+  font-family: 'Red Ring Regular';
+  src: url(./Red\ Ring\ Regular.ttf);
+}
+
+*{
+  font-family: 'Red Ring Regular';
+}
