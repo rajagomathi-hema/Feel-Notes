@@ -1,4 +1,4 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, redirect, session
 from mongoengine import connect, connection
 
 app = Flask(__name__)
@@ -30,11 +30,30 @@ app.register_blueprint(saveBp,url_prefix='/save')
 
 @app.get('/')
 def main():
+    sessionUser = session.get('user')
+    if not sessionUser:
+        return redirect('/login')
     return render_template('index.html')
 
 @app.get('/<page>')
-def topThoughts(page):
+def loadPages(page):
+    sessionUser = session.get('user')
+    if not sessionUser:
+        return render_template('login.html')
     return render_template(f'{page}.html')
 
+@app.context_processor
+def loadData():
+    sessionUser = session.get('user')
+    if not sessionUser:
+        return {
+            'isLogin': False
+        }
+    
+    return {
+        'isLogin': True,
+        'user': sessionUser
+    }
+
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(debug=True, host='0.0.0.0')

@@ -1,4 +1,4 @@
-from flask import Blueprint, jsonify, request, session
+from flask import Blueprint, jsonify, request, session, redirect
 from models import User
 
 auth_bp = Blueprint('auth_bp', __name__)
@@ -77,5 +77,6 @@ def logout():
         if not user:
             return jsonify({"status": "error", "message": "Unauthorized Access! Please login to logout."})
         session.clear()
+        return redirect('/login')
     except Exception as e:
         return jsonify({"status": "error", "message": f"Error: {str(e)}"})

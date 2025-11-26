@@ -58,15 +58,32 @@
                         aria-expanded="false">
                         <i class="bi bi-person-circle fs-3"></i>
                     </a>
-                    <ul class="dropdown-menu dropdown-menu-end text-center">
+                    <ul class="dropdown-menu dropdown-menu-end">
                         <li>
-                            <h6 class="dropdown-header mb-0">name</h6>
+                            <h5 class="dropdown-header mb-0">
+                                <i class="bi bi-person-fill me-2"></i>
+                                {% if isLogin %}
+                                {{user.name}}
+                                {% endif %}
+                            </h5>
                         </li>
-                        <li><small class="text-muted">email</small></li>
+                        <li>
+                            <h5 class="dropdown-header mb-0">
+                                <i class="bi bi-envelope-fill me-2"></i>
+                                {% if isLogin %}
+                                {{user.email}}
+                                {% endif %}
+                            </h5>
+                        </li>
                         <li>
                             <hr class="dropdown-divider">
                         </li>
-                        <li><a class="dropdown-item text-danger" href="#">Logout</a></li>
+                        <li>
+                            <a class="dropdown-item text-danger" href="/auth/logout">
+                                <i class="bi bi-escape me-2"></i>
+                                Logout
+                            </a>
+                        </li>
                     </ul>
                 </div>
             </div>
@@ -109,16 +126,33 @@
                             aria-expanded="false">
                             <i class="bi bi-person-circle fs-4"></i>
                         </a>
-                        <ul class="dropdown-menu dropdown-menu-end text-center">
-                            <li>
-                                <h6 class="dropdown-header mb-0">name</h6>
-                            </li>
-                            <li><small class="text-muted">email</small></li>
-                            <li>
-                                <hr class="dropdown-divider">
-                            </li>
-                            <li><a class="dropdown-item text-danger" href="#">Logout</a></li>
-                        </ul>
+                        <ul class="dropdown-menu dropdown-menu-end">
+                        <li>
+                            <h5 class="dropdown-header mb-0">
+                                <i class="bi bi-person-fill me-2"></i>
+                                {% if isLogin %}
+                                {{user.name}}
+                                {% endif %}
+                            </h5>
+                        </li>
+                        <li>
+                            <h5 class="dropdown-header mb-0">
+                                <i class="bi bi-envelope-fill me-2"></i>
+                                {% if isLogin %}
+                                {{user.email}}
+                                {% endif %}
+                            </h5>
+                        </li>
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+                        <li>
+                            <a class="dropdown-item text-danger" href="/auth/logout">
+                                <i class="bi bi-escape me-2"></i>
+                                Logout
+                            </a>
+                        </li>
+                    </ul>
                     </div>   
                 </div>
             </div>
@@ -163,36 +197,37 @@
             <h5 id="offcanvasCreateLabel" class="fw-semibold">Create a Note</h5>
             <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
         </div>
-        <div class="offcanvas-body pt-2">
-            <textarea class="form-control mb-3" rows="3"  style="height: 140px;" placeholder="What's on your mind?"></textarea>
+        <form class="offcanvas-body pt-2" id="Notes">
+            <textarea class="form-control mb-3" rows="3" id="note" style="height: 140px;"
+                placeholder="What's on your mind?"></textarea>
 
-            <div class="d-flex justify-content-between align-items-center">
+            <div class="d-flex justify-content-between align-items-center" id="emoji">
                 <div class="d-flex flex-wrap gap-1 emoji-btn">
-                    <input type="radio" class="btn-check" name="emoji" id="emoji1" autocomplete="off">
+                    <input type="radio" class="btn-check " value="😀" name="emoji" id="emoji1" autocomplete="off">
                     <label class="btn btn-outline-primary" for="emoji1">😀</label>
-                    <input type="radio" class="btn-check" name="emoji" id="emoji2" autocomplete="off">
+                    <input type="radio" class="btn-check" value="😍" name="emoji" id="emoji2" autocomplete="off">
                     <label class="btn btn-outline-primary" for="emoji2">😍</label>
-                    <input type="radio" class="btn-check" name="emoji" id="emoji3" autocomplete="off">
+                    <input type="radio" class="btn-check" value="😒" name="emoji" id="emoji3" autocomplete="off">
                     <label class="btn btn-outline-primary" for="emoji3">😒</label>
-                    <input type="radio" class="btn-check" name="emoji" id="emoji4" autocomplete="off">
+                    <input type="radio" class="btn-check" value="😘" name="emoji" id="emoji4" autocomplete="off">
                     <label class="btn btn-outline-primary" for="emoji4">😘</label>
-                    <input type="radio" class="btn-check" name="emoji" id="emoji5" autocomplete="off">
+                    <input type="radio" class="btn-check" value="😂" name="emoji" id="emoji5" autocomplete="off">
                     <label class="btn btn-outline-primary" for="emoji5">😂</label>
-                    <input type="radio" class="btn-check" name="emoji" id="emoji6" autocomplete="off">
+                    <input type="radio" class="btn-check" value="😎" name="emoji" id="emoji6" autocomplete="off">
                     <label class="btn btn-outline-primary" for="emoji6">😎</label>
-                    <input type="radio" class="btn-check" name="emoji" id="emoji7" autocomplete="off">
+                    <input type="radio" class="btn-check" value="😛" name="emoji" id="emoji7" autocomplete="off">
                     <label class="btn btn-outline-primary" for="emoji7">😛</label>
-                    <input type="radio" class="btn-check" name="emoji" id="emoji8" autocomplete="off">
+                    <input type="radio" class="btn-check" value="😭" name="emoji" id="emoji8" autocomplete="off">
                     <label class="btn btn-outline-primary" for="emoji8">😭</label>
-                    <input type="radio" class="btn-check" name="emoji" id="emoji9" autocomplete="off">
+                    <input type="radio" class="btn-check" value="😇" name="emoji" id="emoji9" autocomplete="off">
                     <label class="btn btn-outline-primary" for="emoji9">😇</label>
-                    <input type="radio" class="btn-check" name="emoji" id="emoji10" autocomplete="off">
+                    <input type="radio" class="btn-check" value="😅" name="emoji" id="emoji10" autocomplete="off">
                     <label class="btn btn-outline-primary" for="emoji10">😅</label>
 
                 </div>
-                <button class="btn btn-primary btn-sm" style="background-color: var(--primary); color: white;">Whisper it</button>
+                <button class="btn btn-sm" style="background-color: var(--primary); color: white;">Whisper it</button>
             </div>
-        </div>
+        </form>
     </div>
 
     <!-- OFFCANVAS: Mood of the Day -->
@@ -219,6 +254,7 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="../static/js/index.js"></script>
     <script src="../static/js/save.js"></script>
+    <script src="../static/js/note.js"></script>
 
 </body>
 

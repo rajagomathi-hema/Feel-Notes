@@ -10,7 +10,7 @@ def newNote():
 
         content = data.get('content')
         mood = data.get('mood')
-        # reaction = data.get('reaction')
+        reaction = data.get('reaction')
         
         if not content or not mood:
             return jsonify({"status": "error", "message": "All fields required."})
@@ -18,7 +18,7 @@ def newNote():
         Note(
             content = content,
             mood = mood,
-            # reaction = reaction,
+            reaction = reaction,
         ).save()
 
         return jsonify({"status": "success", "message": "Note created Successfully."})
@@ -128,5 +128,57 @@ def deleteNotes():
         note.delete()
 
         return jsonify({"status": "success", "message": "Note found and removed from notes list."}) 
+    except Exception as e: 
+        return jsonify({"status": "error", "message": f"Error: {str(e)}"})
+    
+@noteBp.post('/react')
+def react():
+    try:
+        sessionUser = session.get('user')
+        if not sessionUser:
+            return jsonify({"status": "error", "message": "Unauthorized Access! Please login to see more notes."})
+
+        user = User.objects(id=sessionUser.get('id')).first()
+        if not user:
+            return jsonify({"status": "error", "message": "User not found."})
+        
+        user_id = str(user.id)
+
+        data = request.get_json()
+
+        id = data.get('id')
+        key = data.get('key')
+
+        if not id or not key:
+            return jsonify({"status": "error", "message": "Id, Key or Value is missing."})
+
+        note = Note.objects(id = id).first()
+        if not note:
+            return jsonify({"status": "error", "message": "Note not found"})
+
+        prev = note.userReactions.get(user_id)
+        
+        # CASE A: User already reacted before
+        if prev:
+
+            # A1: User clicked the SAME emoji → remove reaction
+            if prev == key:
+                note.reaction[key] -= 1
+                del note.userReactions[user_id]
+
+            # A2: User clicked DIFFERENT emoji → change reaction
+            else:
+                note.reaction[prev] -= 1
+                note.reaction[key] += 1
+                note.userReactions[user_id] = key
+
+        # CASE B: First time reacting
+        else:
+            note.reaction[key] += 1
+            note.userReactions[user_id] = key
+        
+        note.save()
+
+        return jsonify({"status": "success", "message": "Note Reacted.", 'reactions': note.reaction, 'id': str(note.id)}) 
     except Exception as e: 
         return jsonify({"status": "error", "message": f"Error: {str(e)}"})

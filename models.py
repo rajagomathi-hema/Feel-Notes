@@ -19,7 +19,10 @@ class Note(Document):
 
     content = StringField( required = True )
     mood = StringField()
-    reaction = StringField()
+    reaction = DictField(default={})
+    userReactions = DictField(default={})
+    #isReactedBySessionUser = BooleanField(default=False)
+    #lastReactedEmoji = StringField(default=None)
 
     addedTime = DateTimeField(default = datetime.now())
     updatedTime = DateTimeField()

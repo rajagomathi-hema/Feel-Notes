@@ -40,7 +40,15 @@ def newNote():
 @saveBp.get('/getAll')
 def getAllNotes():
     try:
-        savenotes = SaveNote.objects()
+        sessionUser = session.get('user')
+        if not sessionUser:
+            return jsonify({"status": "error", "message": "Unauthorized Access! Please login to see more notes."})
+
+        user = User.objects(id=sessionUser.get('id')).first()
+        if not user:
+            return jsonify({"status": "error", "message": "User not found."})
+
+        savenotes = SaveNote.objects(user=user)
 
         savenoteList = []
     
