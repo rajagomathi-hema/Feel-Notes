@@ -182,3 +182,71 @@ def react():
         return jsonify({"status": "success", "message": "Note Reacted.", 'reactions': note.reaction, 'id': str(note.id)}) 
     except Exception as e: 
         return jsonify({"status": "error", "message": f"Error: {str(e)}"})
+    
+
+@noteBp.get('/analytics')
+def analytics():
+    try:
+
+        # stats = Note.get_total_reactions()
+        
+        # top_laugh_note = Note.get_top_note_for_emoji("😍")
+
+        # print("Note ID:", top_laugh_note["_id"])
+        # print("Content:", top_laugh_note["content"])
+        # print("😂 Count:", top_laugh_note["emojiCount"])
+
+
+        # return stats, top_laugh_note
+
+        # Step 1: Get total reaction counts
+        stats = Note.get_total_reactions()
+
+        # stats = { "total😊": 10, "total😍": 25, "total😂": 5, ... }
+
+        # Step 2: Convert stats into a normal dict with emoji → count
+        reaction_totals = {
+            "😊": stats.get("total😊", 0),
+            "😍": stats.get("total😍", 0),
+            "😂": stats.get("total😂", 0),
+            "😡": stats.get("total😡", 0),
+            "😢": stats.get("total😢", 0),
+        }
+
+        # Step 3: find the emoji with highest count
+        highest_emoji = max(reaction_totals, key=reaction_totals.get)
+        highest_count = reaction_totals[highest_emoji]
+
+        print("Highest Reaction:", highest_emoji, "=", highest_count)
+
+        # Step 4: get the note with highest count for that reaction
+        top_note = Note.get_top_note_for_emoji(highest_emoji)
+
+        # Step 5: return analytics
+        return jsonify({
+            "status": "success",
+            "highestReaction": highest_emoji,
+            "highestReactionCount": highest_count,
+            "topNote": top_note,
+            "reactionTotals": reaction_totals
+        })
+
+    
+    except Exception as e: 
+        return jsonify({"status": "error", "message": f"Error: {str(e)}"})
+    
+
+@noteBp.get('/topnote/<emoji>')
+def topnote(emoji):
+    try:
+        note = Note.get_top_note_for_emoji(emoji)
+        if not note:
+            return jsonify({"status": "error", "message": "No notes found."})
+
+        return jsonify({
+            "status": "success",
+            "note": note
+        })
+
+    except Exception as e:
+        return jsonify({"status": "error", "message": str(e)})

@@ -19,13 +19,47 @@ class Note(Document):
 
     content = StringField( required = True )
     mood = StringField()
-    reaction = DictField(default={})
+    reaction = DictField(default={
+    "😊": 0,
+    "😍": 0,
+    "😂": 0,
+    "😡": 0,
+    "😢": 0
+})
+
     userReactions = DictField(default={})
     #isReactedBySessionUser = BooleanField(default=False)
     #lastReactedEmoji = StringField(default=None)
 
     addedTime = DateTimeField(default = datetime.now())
     updatedTime = DateTimeField()
+
+    @classmethod
+    def get_total_reactions(cls):
+        return list(cls.objects.aggregate([
+            {
+                "$group": {
+                    "_id": None,
+                    "total😊": {"$sum": "$reaction.😊"},
+                    "total😍": {"$sum": "$reaction.😍"},
+                    "total😂": {"$sum": "$reaction.😂"},
+                    "total😡": {"$sum": "$reaction.😡"},
+                    "total😢": {"$sum": "$reaction.😢"}
+                }
+            }
+        ]))[0]
+    
+    @classmethod
+    def get_top_note_for_emoji(cls, emoji):
+        field = f"reaction.{emoji}"
+
+        result = list(cls.objects.aggregate([
+                { "$addFields": { "emojiCount": f"${field}" } },
+                { "$sort": { "emojiCount": -1 } },
+                { "$limit": 1 }
+            ]))
+
+        return result[0] if result else None
 
     
 class CalmZone(Document):

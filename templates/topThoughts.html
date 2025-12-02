@@ -90,7 +90,8 @@
         </div>
 
         <!-- Offcanvas for Mobile -->
-        <div class="offcanvas offcanvas-end" style="background-color: var(--primary) !important;" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
+        <div class="offcanvas offcanvas-end" style="background-color: var(--primary) !important;" tabindex="-1"
+            id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
             <div class="offcanvas-header d-flex justify-content-between align-items-center">
                 <h5 class="offcanvas-title text-white" id="offcanvasNavbarLabel">Menu</h5>
                 <i class="bi bi-x-lg text-white" data-bs-dismiss="offcanvas" aria-label="Close"></i>
@@ -125,335 +126,120 @@
                             <i class="bi bi-person-circle fs-4"></i>
                         </a>
                         <ul class="dropdown-menu dropdown-menu-end">
-                        <li>
-                            <h5 class="dropdown-header mb-0">
-                                <i class="bi bi-person-fill me-2"></i>
-                                {% if isLogin %}
-                                {{user.name}}
-                                {% endif %}
-                            </h5>
-                        </li>
-                        <li>
-                            <h5 class="dropdown-header mb-0">
-                                <i class="bi bi-envelope-fill me-2"></i>
-                                {% if isLogin %}
-                                {{user.email}}
-                                {% endif %}
-                            </h5>
-                        </li>
-                        <li>
-                            <hr class="dropdown-divider">
-                        </li>
-                        <li>
-                            <a class="dropdown-item text-danger" href="/auth/logout">
-                                <i class="bi bi-escape me-2"></i>
-                                Logout
-                            </a>
-                        </li>
-                    </ul>
-                    </div>   
+                            <li>
+                                <h5 class="dropdown-header mb-0">
+                                    <i class="bi bi-person-fill me-2"></i>
+                                    {% if isLogin %}
+                                    {{user.name}}
+                                    {% endif %}
+                                </h5>
+                            </li>
+                            <li>
+                                <h5 class="dropdown-header mb-0">
+                                    <i class="bi bi-envelope-fill me-2"></i>
+                                    {% if isLogin %}
+                                    {{user.email}}
+                                    {% endif %}
+                                </h5>
+                            </li>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+                            <li>
+                                <a class="dropdown-item text-danger" href="/auth/logout">
+                                    <i class="bi bi-escape me-2"></i>
+                                    Logout
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
             </div>
         </div>
     </nav>
 
-    <div class="mx-5">
+    <div class="container">
         <!-- Today's Energy Section -->
         <div class="text-center my-3">
-            <h5 class="fw-semibold mt-4">Today's Energy : <span style="color: var(--primary);">Hopeful & Kind</span></h5>
-            <div class="d-flex justify-content-center gap-3 mt-4 flex-wrap ">
-                <button class="btn btn-outline-primary">😊 Happy</button>
-                <button class="btn btn-outline-danger">❤️ Love</button>
-                <button class="btn btn-outline-secondary">😢 Sad</button>
-                <button class="btn btn-outline-info">😌 Calm</button>
-                <button class="btn btn-outline-warning">😠 Angry</button>
-                <button class="btn btn-outline-dark">💭 Advice</button>
+            <h5 class="fw-semibold mt-4">Today's Energy : <span style="color: var(--primary);">Hopeful & Kind</span>
+            </h5>
+            <div class="btn-group  my-3" role="group">
+                <input type="radio" class="btn-check reaction-radio" name="reactionTabs" id="happy" autocomplete="off"
+                    data-emoji="😊">
+                <label class="btn btn-outline-primary" for="happy">😊 Happy</label>
+
+                <input type="radio" class="btn-check reaction-radio" name="reactionTabs" id="love" autocomplete="off"
+                    data-emoji="😍">
+                <label class="btn btn-outline-danger" for="love">😍 Love</label>
+
+                <input type="radio" class="btn-check reaction-radio" name="reactionTabs" id="sad" autocomplete="off"
+                    data-emoji="😢">
+                <label class="btn btn-outline-secondary" for="sad">😢 Sad</label>
+
+                <input type="radio" class="btn-check reaction-radio" name="reactionTabs" id="angry" autocomplete="off"
+                    data-emoji="😡">
+                <label class="btn btn-outline-warning" for="angry">😡 Angry</label>
+
+                <input type="radio" class="btn-check reaction-radio" name="reactionTabs" id="funny" autocomplete="off"
+                    data-emoji="😂">
+                <label class="btn btn-outline-dark" for="funny">😂 Funny</label>
             </div>
+
         </div>
 
         <!-- Top Thoughts Cards -->
         <h5 class="mb-3 mt-4" style="color: var(--primary);">Most Loved Thoughts 💭</h5>
         <!-- MAIN BODY -->
-        <div class="container mt-4 ">
-            <div class="row g-4">
-                <!-- Cards Section -->
-                <div class="col-md-12">
-                    <div class="row g-3">
+        <div class="row g-4">
+            <div class="col-md-6">
+                <div class="card note-card shadow-sm">
+                    <div class="card-body">
+                        <h6 class="fw-bold">Top Note</h6>
 
-                        <!-- Example Note Card -->
-                        <div class="col-md-6">
-                            <div class="card note-card shadow-sm">
-                                <div class="card-body">
-                                    <div class="row">
-                                        <div class="col-2 text-center">
-                                            <span class="fs-4">🙄</span>
-                                        </div>
-                                        <div class="col-10">
-                                            <p class="text-muted truncated-text mb-1" style="font-size: inherit;">
-                                                Will disappear in 8h Will disappear in 8h Will disappear in 8h Will
-                                                disappear in 8h
-                                                Will disappear in 8h Will disappear in 8h Will disappear in 8h Will
-                                                "Hello" is a common greeting used when meeting someone, answering the
-                                                telephone,
-                                                or to get someone's attention. The word is an interjection that can also
-                                                be
-                                                used to
-                                                express surprise or question comprehension.
-                                                Will disappear in 8h Will disappear in 8h Will disappear in 8h Will
-                                                disappear in 8h
-                                                Will disappear in 8h Will disappear in 8h Will disappear in 8h Will
-                                                "Hello" is a common greeting used when meeting someone, answering the
-                                                telephone,
-                                                or to get someone's attention. The word is an interjection that can also
-                                                be
-                                                used to
-                                                express surprise or question comprehension.
-                                                Will disappear in 8h Will disappear in 8h Will disappear in 8h Will
-                                                disappear in 8h
-                                                Will disappear in 8h Will disappear in 8h Will disappear in 8h Will
-                                                "Hello" is a common greeting used when meeting someone, answering the
-                                                telephone,
-                                                or to get someone's attention. The word is an interjection that can also
-                                                be
-                                                used to
-                                                express surprise or question comprehension.
-                                                Will disappear in 8h Will disappear in 8h Will disappear in 8h Will
-                                                disappear in 8h
-                                                Will disappear in 8h Will disappear in 8h Will disappear in 8h Will
-                                                "Hello" is a common greeting used when meeting someone, answering the
-                                                telephone,
-                                                or to get someone's attention. The word is an interjection that can also
-                                                be
-                                                used to
-                                                express surprise or question comprehension.
-                                                Will disappear in 8h Will disappear in 8h Will disappear in 8h Will
-                                                disappear in 8h
-                                                Will disappear in 8h Will disappear in 8h Will disappear in 8h Will
-                                                "Hello" is a common greeting used when meeting someone, answering the
-                                                telephone,
-                                                or to get someone's attention. The word is an interjection that can also
-                                                be
-                                                used to
-                                                express surprise or question comprehension.
-                                                Will disappear in 8h Will disappear in 8h Will disappear in 8h Will
-                                                disappear in 8h
-                                                Will disappear in 8h Will disappear in 8h Will disappear in 8h Will
-                                                "Hello" is a common greeting used when meeting someone, answering the
-                                                telephone,
-                                                or to get someone's attention. The word is an interjection that can also
-                                                be
-                                                used to
-                                                express surprise or question comprehension.
-                                                Will disappear in 8h Will disappear in 8h Will disappear in 8h Will
-                                                disappear in 8h
-                                                Will disappear in 8h Will disappear in 8h Will disappear in 8h Will
-                                                "Hello" is a common greeting used when meeting someone, answering the
-                                                telephone,
-                                                or to get someone's attention. The word is an interjection that can also
-                                                be
-                                                used to
-                                                express surprise or question comprehension.
-                                                Will disappear in 8h Will disappear in 8h Will disappear in 8h Will
-                                                disappear in 8h
-                                                Will disappear in 8h Will disappear in 8h Will disappear in 8h Will
-                                                "Hello" is a common greeting used when meeting someone, answering the
-                                                telephone,
-                                                or to get someone's attention. The word is an interjection that can also
-                                                be
-                                                used to
-                                                express surprise or question comprehension.
-                                            </p>
-                                            <button type="button"
-                                                class="btn btn-link p-0 text-decoration-none text-primary read-more-btn">
-                                                Read more
-                                            </button>
-                                        </div>
-                                    </div>
-
-                                    <div class="d-flex justify-content-between mt-3 pt-2 border-top">
-                                        <div class="d-flex align-items-center">
-                                            <button class="btn border-0 p-0 fs-4">😀</button>
-                                            <span class="count"></span>
-                                        </div>
-                                        <div class="d-flex align-items-center">
-                                            <button class="btn border-0 p-0 fs-4">😍</button>
-                                            <span class="count"></span>
-                                        </div>
-                                        <div class="d-flex align-items-center">
-                                            <button class="btn border-0 p-0 fs-4">😒</button>
-                                            <span class="count"></span>
-                                        </div>
-                                        <div class="d-flex align-items-center">
-                                            <button class="btn border-0 p-0 fs-4">😘</button>
-                                            <span class="count"></span>
-                                        </div>
-                                        <div class="d-flex align-items-center">
-                                            <button class="btn border-0 p-0 fs-4">😂</button>
-                                            <span class="count"></span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="card note-card shadow-sm">
-                                <div class="card-body">
-                                    <div class="row">
-                                        <div class="col-2 text-center">
-                                            <span class="fs-4">🙄</span>
-                                        </div>
-                                        <div class="col-10">
-                                            <p class="text-muted truncated-text mb-1" style="font-size: inherit;">
-                                                Will disappear in 8h Will disappear in 8h Will disappear in 8h Will
-                                                disappear in 8h
-                                                Will disappear in 8h Will disappear in 8h Will disappear in 8h Will
-                                                "Hello" is a common greeting used when meeting someone, answering the
-                                                telephone,
-                                                or to get someone's attention. The word is an interjection that can also
-                                                be
-                                                used to
-                                                express surprise or question comprehension.
-                                                Will disappear in 8h Will disappear in 8h Will disappear in 8h Will
-                                                disappear in 8h
-                                                Will disappear in 8h Will disappear in 8h Will disappear in 8h Will
-                                                "Hello" is a common greeting used when meeting someone, answering the
-                                                telephone,
-                                                or to get someone's attention. The word is an interjection that can also
-                                                be
-                                                used to
-                                                express surprise or question comprehension.
-                                                Will disappear in 8h Will disappear in 8h Will disappear in 8h Will
-                                                disappear in 8h
-                                                Will disappear in 8h Will disappear in 8h Will disappear in 8h Will
-                                                "Hello" is a common greeting used when meeting someone, answering the
-                                                telephone,
-                                                or to get someone's attention. The word is an interjection that can also
-                                                be
-                                                used to
-                                                express surprise or question comprehension.
-                                                Will disappear in 8h Will disappear in 8h Will disappear in 8h Will
-                                                disappear in 8h
-                                                Will disappear in 8h Will disappear in 8h Will disappear in 8h Will
-                                                "Hello" is a common greeting used when meeting someone, answering the
-                                                telephone,
-                                                or to get someone's attention. The word is an interjection that can also
-                                                be
-                                                used to
-                                                express surprise or question comprehension.
-                                                Will disappear in 8h Will disappear in 8h Will disappear in 8h Will
-                                                disappear in 8h
-                                                Will disappear in 8h Will disappear in 8h Will disappear in 8h Will
-                                                "Hello" is a common greeting used when meeting someone, answering the
-                                                telephone,
-                                                or to get someone's attention. The word is an interjection that can also
-                                                be
-                                                used to
-                                                express surprise or question comprehension.
-                                                Will disappear in 8h Will disappear in 8h Will disappear in 8h Will
-                                                disappear in 8h
-                                                Will disappear in 8h Will disappear in 8h Will disappear in 8h Will
-                                                "Hello" is a common greeting used when meeting someone, answering the
-                                                telephone,
-                                                or to get someone's attention. The word is an interjection that can also
-                                                be
-                                                used to
-                                                express surprise or question comprehension.
-                                                Will disappear in 8h Will disappear in 8h Will disappear in 8h Will
-                                                disappear in 8h
-                                                Will disappear in 8h Will disappear in 8h Will disappear in 8h Will
-                                                "Hello" is a common greeting used when meeting someone, answering the
-                                                telephone,
-                                                or to get someone's attention. The word is an interjection that can also
-                                                be
-                                                used to
-                                                express surprise or question comprehension.
-                                                Will disappear in 8h Will disappear in 8h Will disappear in 8h Will
-                                                disappear in 8h
-                                                Will disappear in 8h Will disappear in 8h Will disappear in 8h Will
-                                                "Hello" is a common greeting used when meeting someone, answering the
-                                                telephone,
-                                                or to get someone's attention. The word is an interjection that can also
-                                                be
-                                                used to
-                                                express surprise or question comprehension.
-                                            </p>
-                                            <button type="button"
-                                                class="btn btn-link p-0 text-decoration-none text-primary read-more-btn">
-                                                Read more
-                                            </button>
-                                        </div>
-                                    </div>
-
-                                    <div class="d-flex justify-content-between mt-3 pt-2 border-top">
-                                        <div class="d-flex align-items-center">
-                                            <button class="btn border-0 p-0 fs-4">😀</button>
-                                            <span class="count"></span>
-                                        </div>
-                                        <div class="d-flex align-items-center">
-                                            <button class="btn border-0 p-0 fs-4">😍</button>
-                                            <span class="count"></span>
-                                        </div>
-                                        <div class="d-flex align-items-center">
-                                            <button class="btn border-0 p-0 fs-4">😒</button>
-                                            <span class="count"></span>
-                                        </div>
-                                        <div class="d-flex align-items-center">
-                                            <button class="btn border-0 p-0 fs-4">😘</button>
-                                            <span class="count"></span>
-                                        </div>
-                                        <div class="d-flex align-items-center">
-                                            <button class="btn border-0 p-0 fs-4">😂</button>
-                                            <span class="count"></span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-
-
-                        
-
-                        <!-- Duplicate note cards as needed -->
+                        <p class="text-muted truncated-text" id="topNoteText">
+                            Click a reaction above to load the highest reacted note.
+                        </p>
 
                     </div>
                 </div>
             </div>
         </div>
+    </div>
 
-        <!-- Tree of Thoughts Section -->
-        <div class="mt-5 text-center">
-            <h5 class=" mb-3" style="color: var(--primary);">🌳 Tree of Thoughts</h5>
-            <p>Each leaf grows from emotions shared today.</p>
-            <div class="border rounded-3 bg-white p-4 shadow-sm">
-                <p class="text-muted">[Tree illustration can be added here later 🌿]</p>
-            </div>
-            <button class="btn  mt-3 mb-3" style="background-color: var(--primary); color: white;">🌱 Grow a New Leaf</button>
+    <!-- Tree of Thoughts Section -->
+    <div class="mt-5 text-center">
+        <h5 class=" mb-3" style="color: var(--primary);">🌳 Tree of Thoughts</h5>
+        <p>Each leaf grows from emotions shared today.</p>
+        <div class="border rounded-3 bg-white p-4 shadow-sm">
+            <p class="text-muted">[Tree illustration can be added here later 🌿]</p>
         </div>
+        <button class="btn  mt-3 mb-3" style="background-color: var(--primary); color: white;">🌱 Grow a New
+            Leaf</button>
+    </div>
 
 
-        <!-- MODAL: Full Note View -->
-        <div class="modal fade" id="noteModal" tabindex="-1" aria-labelledby="noteModalLabel" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-scrollable">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="noteModalLabel">Full Note</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body" id="noteModalBody">
-                        <!-- Content dynamically inserted here -->
-                    </div>
+    <!-- MODAL: Full Note View -->
+    <div class="modal fade" id="noteModal" tabindex="-1" aria-labelledby="noteModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-scrollable">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="noteModalLabel">Full Note</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body" id="noteModalBody">
+                    <!-- Content dynamically inserted here -->
                 </div>
             </div>
         </div>
+    </div>
 
-        <!-- OFFCANVAS: Note Creation -->
-        <div class="offcanvas offcanvas-top" tabindex="-1" id="offcanvasCreate" aria-labelledby="offcanvasCreateLabel">
-            <div class="offcanvas-header pb-0">
-                <h5 id="offcanvasCreateLabel" class="fw-semibold">Create a Note</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-            </div>
-            <form class="offcanvas-body pt-2" id="Notes">
+    <!-- OFFCANVAS: Note Creation -->
+    <div class="offcanvas offcanvas-top" tabindex="-1" id="offcanvasCreate" aria-labelledby="offcanvasCreateLabel">
+        <div class="offcanvas-header pb-0">
+            <h5 id="offcanvasCreateLabel" class="fw-semibold">Create a Note</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        </div>
+        <form class="offcanvas-body pt-2" id="Notes">
             <textarea class="form-control mb-3" rows="3" id="note" style="height: 140px;"
                 placeholder="What's on your mind?"></textarea>
 
@@ -484,25 +270,25 @@
                 <button class="btn btn-sm" style="background-color: var(--primary); color: white;">Whisper it</button>
             </div>
         </form>
-        </div>
+    </div>
 
-        <!-- OFFCANVAS: Mood of the Day -->
-        <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasMood" aria-labelledby="offcanvasMoodLabel">
-            <div class="offcanvas-header">
-                <h5 id="offcanvasMoodLabel" class="fw-semibold">Mood of the Day</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-            </div>
-            <div class="offcanvas-body text-center">
-                <h6>Today’s Mood Chart</h6>
-                <div class="d-flex justify-content-center mb-3">
-                    <canvas id="moodChart" width="200" height="200"></canvas>
-                </div>
-                <hr>
-                <h6>Quote of the Day</h6>
-                <p>"Keep calm and feel your emotions."</p>
-                <button class="btn btn-outline-primary btn-sm mt-3">Inspire Me</button>
-            </div>
+    <!-- OFFCANVAS: Mood of the Day -->
+    <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasMood" aria-labelledby="offcanvasMoodLabel">
+        <div class="offcanvas-header">
+            <h5 id="offcanvasMoodLabel" class="fw-semibold">Mood of the Day</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
         </div>
+        <div class="offcanvas-body text-center">
+            <h6>Today’s Mood Chart</h6>
+            <div class="d-flex justify-content-center mb-3">
+                <canvas id="moodChart" width="200" height="200"></canvas>
+            </div>
+            <hr>
+            <h6>Quote of the Day</h6>
+            <p>"Keep calm and feel your emotions."</p>
+            <button class="btn btn-outline-primary btn-sm mt-3">Inspire Me</button>
+        </div>
+    </div>
     </div>
 
     <!-- Bootstrap JS -->
@@ -510,7 +296,8 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="../static/js/index.js"></script>
     <script src="../static/js/note.js"></script>
-    
+    <script src="../static/js/topNotes.js"></script>
+
 </body>
 
 </html>
